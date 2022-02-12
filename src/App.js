@@ -16,13 +16,26 @@ function App() {
     const resInfo = await fetch(`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${search.text}/JSON`)
     const infoData = await resInfo.json()
 
-    const cid = infoData["PC_Compounds"]["0"]["id"]["id"]["cid"]
+    const infoRoot = infoData["PC_Compounds"]["0"]
+    const propRoot = infoRoot["props"]
+    const cid = infoRoot["id"]["id"]["cid"]
 
     // fetch the compound images
     const resImg = await fetch(`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${cid}/PNG`)
     const imgData = await resImg.blob()
     var img = URL.createObjectURL(imgData)
 
+    newCompound['mw'] = ''
+    newCompound['mf'] = ''
+    // search query result for molecular weight
+    for (const item of propRoot) {
+      if (item.urn.label === "Molecular Weight") {
+        newCompound['mw'] = item.value.sval
+      }
+      if (item.urn.label === "Molecular Formula") {
+        newCompound['mf'] = item.value.sval
+      }
+    }
     newCompound['name'] = search.text
     newCompound['cid'] = cid
     newCompound['img'] = img
@@ -43,7 +56,7 @@ function App() {
   return (
     <div className="container">
       <Header onEnter={onSearch} onClear={onClear}/>
-      {showResults && <SearchResults name={currentCompound.name} cid={currentCompound.cid} img={currentCompound.img}/>}
+      {showResults && <SearchResults compound={currentCompound}/>}
     </div>
   );
 }

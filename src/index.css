@@ -113,6 +113,6 @@ footer {
   text-align: center;
 }
 
-table {
-  border: 1px solid;
+th, td {
+  border-bottom: 1px solid #ddd;
 }
