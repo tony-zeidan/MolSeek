@@ -10,7 +10,7 @@ If the `To Molview Model` checkbox is clicked, the compound will be visualized w
 
 The interface for the application can be seen below:
 
-![interface](https://github.com/tony-zeidan/MolSeek/docs/images/interface.png)
+![interface](docs/images/interface.png)
 
 ## Example
 
@@ -20,8 +20,8 @@ Let's now say that we wish to visualize the compound within `MolView`.\
 To do so, we check the `To Molview Model` box.\
 Upon searching, our interface looks something like this:
 
-![example search result](https://github.com/tony-zeidan/MolSeek/docs/images/interface3.png)
+![example search result](docs/images/interface3.png)
 
 And the `MolView` model is displayed in a new tab:
 
-![example search result molview model](https://github.com/tony-zeidan/MolSeek/docs/images/molview.png)
+![example search result molview model](docs/images/molview.png)
